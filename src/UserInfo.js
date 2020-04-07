@@ -7,7 +7,7 @@ class UserInfo extends Component {
     this.select = this.select.bind(this)
     this.state = {
       inputValue: '',
-      user: ''
+      user: '',
     }
   }
 
@@ -18,7 +18,7 @@ class UserInfo extends Component {
         <input
           value={this.state.inputValue}
           onChange={this.inputChange.bind(this)}
-          ref={input => {
+          ref={(input) => {
             this.input = input
           }}
         />
@@ -31,24 +31,24 @@ class UserInfo extends Component {
     axios
       .get('/user/selectUser', {
         params: {
-          id: this.state.inputValue
-        }
+          id: this.state.inputValue,
+        },
       })
-      .then(res => {
+      .then((res) => {
         this.props = res.data
         this.setState({
           user: JSON.stringify(res.data.data),
-          inputValue: ''
+          inputValue: '',
         })
         console.log(this.state.user)
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('请求数据失败:' + error)
       })
   }
   inputChange() {
     this.setState({
-      inputValue: this.input.value
+      inputValue: this.input.value,
     })
     console.log(this.input.value)
   }
